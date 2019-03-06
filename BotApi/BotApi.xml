@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BotApi</name>
+    </assembly>
+    <members>
+        <member name="T:BotApi.Models.PreguntaRespuesta">
+            <summary>
+            PregutaRespuesta
+            </summary>
+        </member>
+        <member name="P:BotApi.Models.PreguntaRespuesta.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:BotApi.Models.PreguntaRespuesta.Pregunta">
+            <summary>
+            Pregunta
+            </summary>
+        </member>
+        <member name="T:BotApi.Models.PreguntaAbierta">
+            <summary>
+            PreguntaAbierta
+            </summary>
+        </member>
+        <member name="P:BotApi.Models.PreguntaAbierta.Respuestas">
+            <summary>
+            Respuestas
+            </summary>
+        </member>
+        <member name="T:BotApi.Models.PreguntaEleccionUnica">
+            <summary>
+            PreguntaEleccionUnica
+            </summary>
+        </member>
+        <member name="P:BotApi.Models.PreguntaEleccionUnica.Respuestas">
+            <summary>
+            Respuesta
+            </summary>
+        </member>
+        <member name="T:BotApi.Models.Usuario">
+            <summary>
+            Usuario
+            </summary>
+        </member>
+        <member name="P:BotApi.Models.Usuario.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:BotApi.Models.Usuario.Nombre">
+            <summary>
+            Nombre
+            </summary>
+        </member>
+        <member name="P:BotApi.Models.Usuario.Apellido">
+            <summary>
+            Apellido
+            </summary>
+        </member>
+        <member name="P:BotApi.Models.Usuario.Telefono">
+            <summary>
+            Telefono
+            </summary>
+        </member>
+        <member name="P:BotApi.Models.Usuario.Celular">
+            <summary>
+            Celular
+            </summary>
+        </member>
+        <member name="P:BotApi.Models.Usuario.Dni">
+            <summary>
+            Dni
+            </summary>
+        </member>
+        <member name="P:BotApi.Models.Usuario.Codigo">
+            <summary>
+            Codigo
+            </summary>
+        </member>
+        <member name="P:BotApi.Models.Usuario.Contrasena">
+            <summary>
+            Contrasena
+            </summary>
+        </member>
+        <member name="T:BotApi.Models.Cuenta">
+            <summary>
+            Cuenta
+            </summary>
+        </member>
+        <member name="P:BotApi.Models.Cuenta.Codigo">
+            <summary>
+            Codigo
+            </summary>
+        </member>
+        <member name="P:BotApi.Models.Cuenta.Contrasena">
+            <summary>
+            Contrasena
+            </summary>
+        </member>
+        <member name="T:BotApi.Services.EstadisticasController">
+            <summary>
+            EstadisticasController
+            </summary>
+        </member>
+        <member name="M:BotApi.Services.EstadisticasController.PostPreguntaAbierta(System.String)">
+            <summary>
+            Registrar pregunta abierta
+            </summary>
+            <returns></returns>
+            <response code="200">Success</response>
+            <response code="500">Server Error</response>
+        </member>
+        <member name="M:BotApi.Services.EstadisticasController.PostPreguntaEleccionUnica(System.String)">
+            <summary>
+            Registrar pregunta de elección única
+            </summary>
+            <returns></returns>
+            <response code="200">Success</response>
+            <response code="500">Server Error</response>
+        </member>
+        <member name="M:BotApi.Services.EstadisticasController.GetPreguntaAbierta">
+            <summary>
+            Lista de preguntas abiertas
+            </summary>
+            <returns></returns>
+            <response code="200">Success</response>
+            <response code="500">Server Error</response>
+        </member>
+        <member name="M:BotApi.Services.EstadisticasController.GetPreguntaEleccionUnica">
+            <summary>
+            Lista de preguntas Elección única
+            </summary>
+            <returns></returns>
+            <response code="200">Success</response>
+            <response code="500">Server Error</response>
+        </member>
+    </members>
+</doc>

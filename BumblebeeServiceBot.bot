@@ -1,0 +1,41 @@
+{
+  "name": "BumblebeeServiceBot",
+  "padlock": "/bUE3ue0Rttm3UDVzcpg6A==!xbbryZXAjbj5881O5OgJBIsfTpYTwxAlI/9DoGtMnyspl6WDtaY8iHzl14XNoEsb",
+  "version": "2.0",
+  "services": [
+    {
+      "tenantId": "16ee1508-e5ae-4c43-8804-7a1cdaa3ac87",
+      "subscriptionId": "293801b5-47c0-472f-a550-55170d909d03",
+      "resourceGroup": "BumblebeeResource",
+      "serviceName": "BumblebeeServiceBot",
+      "type": "abs",
+      "name": "BumblebeeServiceBot",
+      "id": "1"
+    },
+    {
+      "connectionString": "6FZp9OJnsHprhifU8xCsJQ==!XjzrlV4z02/ull8K5fJ2+/PaeHC3B2sL6Fj6nPY9HgvlTOr+GTit1KPHWx5pVj5SPQ0rRDt5xTCjt+dvrGItSo8ixfcC2+gNa8BfqC9CnoszbVgPs4VMIi7eZb+BkKZKxSaZWPz8qG1bL5RYIkrbYQfM35tvyU5buJH/38x0oqDmc3chuZP9KqNazWMgv86IWGhVhSoYj80V5bwtIEj65NT7junUYpJtBEAzsu2xcl4=",
+      "tenantId": "16ee1508-e5ae-4c43-8804-7a1cdaa3ac87",
+      "subscriptionId": "293801b5-47c0-472f-a550-55170d909d03",
+      "resourceGroup": "BumblebeeResource",
+      "serviceName": "bumblebeeservicebotba51",
+      "type": "blob",
+      "id": "2"
+    },
+    {
+      "appId": "",
+      "appPassword": "",
+      "endpoint": "http://localhost:3978/api/messages",
+      "type": "endpoint",
+      "name": "development",
+      "id": "3"
+    },
+    {
+      "appId": "a2705727-c0aa-42e8-a28d-8d673e7195cb",
+      "appPassword": "HNvBt2KHUl0PGoBudPLNqQ==!vmLdSiU+tZurZP7wjUyOsUN0luW38BVywejQFn2ADrk=",
+      "endpoint": "https://bumblebeeservicebot.azurewebsites.net/api/messages",
+      "type": "endpoint",
+      "name": "production",
+      "id": "4"
+    }
+  ]
+}
