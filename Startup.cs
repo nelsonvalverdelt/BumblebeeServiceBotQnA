@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.AI.QnA;
 using Microsoft.Bot.Builder.BotFramework;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Integration;
@@ -60,9 +61,7 @@ namespace Microsoft.BotBuilderSamples
         /// <seealso cref="https://docs.microsoft.com/en-us/azure/bot-service/bot-service-manage-channels?view=azure-bot-service-4.0"/>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IConfiguracionGlobal, ConfiguracionGlobal>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
+           
             services.AddBot<EchoWithCounterBot>(options =>
             {
                 // Creates a logger for the application to use.
@@ -172,6 +171,20 @@ namespace Microsoft.BotBuilderSamples
                 };
 
                 return accessors;
+            });
+
+            services.AddSingleton(sp =>
+            {
+                var qnaService = new QnAMaker(new QnAMakerEndpoint()
+                {
+                    // get these details from qnamaker.ai
+                    // https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-qna?view=azure-bot-service-4.0&tabs=cs
+                    KnowledgeBaseId = "ebd5d4eb-9c16-490d-af63-94411a144c4d",
+                    Host = "https://bumblebeeqnamaker.azurewebsites.net/qnamaker",
+                    EndpointKey = "542322ac-c339-41f6-a036-cafd85b483fe",
+                });
+
+                return qnaService;
             });
         }
 
