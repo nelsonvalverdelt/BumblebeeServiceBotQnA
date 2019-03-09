@@ -177,8 +177,6 @@ namespace Microsoft.BotBuilderSamples
             {
                 var qnaService = new QnAMaker(new QnAMakerEndpoint()
                 {
-                    // get these details from qnamaker.ai
-                    // https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-qna?view=azure-bot-service-4.0&tabs=cs
                     KnowledgeBaseId = "ebd5d4eb-9c16-490d-af63-94411a144c4d",
                     Host = "https://bumblebeeqnamaker.azurewebsites.net/qnamaker",
                     EndpointKey = "542322ac-c339-41f6-a036-cafd85b483fe",

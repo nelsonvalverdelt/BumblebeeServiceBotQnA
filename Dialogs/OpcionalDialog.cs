@@ -17,7 +17,7 @@ namespace EchoBotWithCounter.Dialogs
                     "choicePrompt",
                     new PromptOptions
                     {
-                        Prompt = stepContext.Context.Activity.CreateReply($"¡No entendí tu pregunta, tengo estas opciones que te pueden ayudar 😊"),
+                        Prompt = stepContext.Context.Activity.CreateReply($"No entendí tu pregunta, tengo estas opciones que te pueden ayudar 😊"),
                         Choices = new[] { new Choice { Value = "Convalidaciones" }, new Choice { Value = "Resultados" }, new Choice { Value = "Convenios" }, new Choice { Value = "Matrícula" }, new Choice { Value = "Test vocacional" }, new Choice { Value = "Examen Admisión" }, new Choice { Value = "Pregunta abierta" }, new Choice { Value = "Feedback" } },
 
                     });

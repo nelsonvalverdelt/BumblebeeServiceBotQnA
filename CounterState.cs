@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+using System;
+
 namespace Microsoft.BotBuilderSamples
 {
     /// <summary>
@@ -14,6 +16,7 @@ namespace Microsoft.BotBuilderSamples
         /// Gets or sets the number of turns in the conversation.
         /// </summary>
         /// <value>The number of turns in the conversation.</value>
-        public int TurnCount { get; set; } = 0;
+        public string Id { get; set; }
+        public int TurnCount { get; set; }
     }
 }

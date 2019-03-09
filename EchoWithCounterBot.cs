@@ -31,17 +31,22 @@ namespace Microsoft.BotBuilderSamples
 
         private readonly DialogSet _dialogSet;
         private readonly ILogger _logger;
+        private static CounterState _counterState = new CounterState();
         public QnAMaker QnAMaker { get; }
-        public string Uri { get; private set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EchoWithCounterBot"/> class.
         /// </summary>
         /// <param name="accessors">A class containing <see cref="IStatePropertyAccessor{T}"/> used to manage state.</param>
         /// <param name="loggerFactory">A <see cref="ILoggerFactory"/> that is hooked to the Azure App Service provider.</param>
         /// <seealso cref="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-2.1#windows-eventlog-provider"/>
-        public EchoWithCounterBot(EchoBotAccessors accessors, QnAMaker qnAMaker, ILoggerFactory loggerFactory)
+        public EchoWithCounterBot(EchoBotAccessors accessors, QnAMaker qnAMaker ,ILoggerFactory loggerFactory)
         {
+      
             QnAMaker = qnAMaker;
+
+          
+
             if (loggerFactory == null)
             {
                 throw new ArgumentNullException(nameof(loggerFactory));
@@ -83,57 +88,50 @@ namespace Microsoft.BotBuilderSamples
         /// <seealso cref="IMiddleware"/>
         public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // initialize state if necessary
-            var state = await EchoBotAccessors.CounterState.GetAsync(turnContext, () => new CounterState(), cancellationToken);
 
-            turnContext.TurnState.Add("EchoBotAccessors", EchoBotAccessors);
-
-            var dialogCtx = await _dialogSet.CreateContextAsync(turnContext, cancellationToken);
+           
+            
             // Handle Message activity type, which is the main activity type for shown within a conversational interface
             // Message activities may contain text, speech, interactive cards, and binary or unknown attachments.
             // see https://aka.ms/about-bot-activity-message to learn more about the message and other activity types
-
-            if (!turnContext.Responded && turnContext.Activity.Type == ActivityTypes.Message)
+            if (turnContext.Activity.Type == ActivityTypes.Message)
             {
+                _counterState.Id = turnContext.Activity.Conversation.Id;
 
-                var result = await QnAMaker.GetAnswersAsync(turnContext);
+                turnContext.TurnState.Add("EchoBotAccessors", EchoBotAccessors);
+                
+           
+                var dialogCtx = await _dialogSet.CreateContextAsync(turnContext, cancellationToken);
 
-                if (result != null && result.Length > 0)
+                if (!turnContext.Responded)
                 {
-                    await turnContext.SendActivityAsync(result[0].Answer, cancellationToken: cancellationToken);
-                }
-                else
-                {
-                    
-                    if (dialogCtx.ActiveDialog == null)
+                    var result = await QnAMaker.GetAnswersAsync(turnContext);
+
+                    if (result != null && result.Length > 0)
                     {
-                        await dialogCtx.BeginDialogAsync(OpcionalDialog.Id, cancellationToken);
+                        await turnContext.SendActivityAsync($"{result[0].Answer}", cancellationToken: cancellationToken);
+                        if(_counterState.TurnCount == 0)
+                        {
+                            await dialogCtx.BeginDialogAsync(PrincipalDialog.Id, cancellationToken);
+                        }
+                      
                     }
                     else
                     {
+
+                        await dialogCtx.BeginDialogAsync(OpcionalDialog.Id, cancellationToken);
                         await dialogCtx.ContinueDialogAsync(cancellationToken);
+
                     }
-                    await EchoBotAccessors.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
-                }
-            }
-
-
-            if (turnContext.Activity.Type == ActivityTypes.Message)
-            {
-              
-
-                if (dialogCtx.ActiveDialog == null)
-                {
-                    await dialogCtx.BeginDialogAsync(PrincipalDialog.Id, cancellationToken);
-                }
-                else
-                {
                     await dialogCtx.ContinueDialogAsync(cancellationToken);
                 }
-                await EchoBotAccessors.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
+                _counterState.TurnCount++;
             }
 
-           
+
+
+
+
             //else
             //{
             //    await turnContext.SendActivityAsync($"{turnContext.Activity.Type} event detected");
